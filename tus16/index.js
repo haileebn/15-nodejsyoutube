@@ -3,10 +3,12 @@ let port = process.env.PORT || 3000;
 // let port = process.env.PORT || 3000;
 
 let app = express();
+app.set('view engine', 'ejs');
 
-app.get('/', function(req, res) {
+app.get('/:name', function(req, res) {
 	// body...
-	res.send("This is the homepage.");
+	let myobj = {age: 20, job: 'DEV'};
+	res.render('profile', {person: req.params.name, info: myobj});
 });
 
 app.get('/contact', function(req, res) {
