@@ -4,6 +4,7 @@ let port = process.env.PORT || 3000;
 
 let app = express();
 app.set('view engine', 'ejs');
+app.use('/assets', express.static('assets'))
 
 app.get('/', function(req, res) {
 	/*optional stuff to do after success */
