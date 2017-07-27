@@ -13,7 +13,7 @@ app.get('/', function(req, res) {
 
 app.get('/contact', function(req, res) {
 	/*optional stuff to do after success */
-	res.render('contact');
+	res.render('contact', {data: req.query});
 });
 
 app.get('/profile/:name', function(req, res) {
