@@ -9,11 +9,11 @@
 			padding: 30px;
 			font-family: verdana;
 		}
-		h1{
+		h1, h2{
 			text-transform: uppercase;
 			text-align: center;
 		}
-		p{
+		p, ul{
 			text-align: center;
 		}
 	</style>
@@ -21,8 +21,16 @@
 <body>
 <h1>profile</h1>
 <p>Chào mừng các bạn đến với trang cá nhân của <%=person%>!!</p>
-<p>job: <%= info.job%><br>
-age: <%= info.age%>
+<p>job: <%= data.job%><br>
+age: <%= data.age%>
 </p>
+<h2>
+	<ul>
+		<% data.hobbies.forEach(function(item) { %>
+			<li> <%= item %> </li>
+		<%});%>
+	</ul>
+</h2>
+
 </body>
 </html>

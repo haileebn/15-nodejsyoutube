@@ -5,10 +5,10 @@ let port = process.env.PORT || 3000;
 let app = express();
 app.set('view engine', 'ejs');
 
-app.get('/:name', function(req, res) {
+app.get('/profile/:name', function(req, res) {
 	// body...
-	let myobj = {age: 20, job: 'DEV'};
-	res.render('profile', {person: req.params.name, info: myobj});
+	let myobj = {age: 20, job: 'DEV', hobbies: ['eating', 'fighting', 'fishing']};
+	res.render('profile', {person: req.params.name, data: myobj});
 });
 
 app.get('/contact', function(req, res) {
