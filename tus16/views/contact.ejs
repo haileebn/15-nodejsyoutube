@@ -8,14 +8,14 @@
 <body>
 <% include partials/nav.ejs %>
 <h1>Contact</h1>
-	<form>
+	<form id="contact-form" action="/contact" method="POST">
 		<label for="who"></label>
 		<input type="text" name="who" value="<%=data.who%>">
 		<label for="department"></label>
 		<input type="text" name="dept" value="<%=data.dept%>">
 		<label for="email"></label>
 		<input type="text" name="email" value="<%=data.email%>">
-		<input type="submit" name="">
+		<input type="submit" name="submit">
 	</form>
 </body>
 </html>
