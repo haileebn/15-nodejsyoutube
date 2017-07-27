@@ -11,31 +11,41 @@ let todoSchema = new mongoose.Schema({
 });
 
 let Todo = mongoose.model('Todo', todoSchema);
-let itemOne = Todo({item: 'buy flowers'}).save(function(err) {
-	// body...
-	if (err) throw err;
-	console.log('item saved');
-});
+// let itemOne = Todo({item: 'buy flowers'}).save(function(err) {
+// 	// body...
+// 	if (err) throw err;
+// 	console.log('item saved');
+// });
 
 
-let data = [{item: 'get milk'},{item: 'walk dog'}, {item: 'kick some coding ass'}]
+// let data = [{item: 'get milk'},{item: 'walk dog'}, {item: 'kick some coding ass'}]
 
 module.exports = function(app) {
 	// body...
 	app.get('/todo', function(req, res) {
 		// body...
+		// get data from mongodb and pass it to view
+		Todo.find({}, function(err, data) {
+			// body...
 		res.render('todo', {todos: data});
+		});
 	});
 	app.post('/todo', urlencodedParser, function(req, res) {
 		// body...
-		data.push(req.body)
-		res.json(data);
+		// get data from the view and add it to mongodb
+		let newTodo = Todo(req.body).save(function (err, data) {
+			// body...
+			if (err) throw err;
+			res.json(data);
+		});
 	});
 	app.delete('/todo/:item', function(req, res) {
 		// body...
-		data = data.filter(function(todo) {
-			return todo.item.replace(/ /g, '-') !== req.params.item;			
+		// delete the reqested item from mongodb
+		Todo.find({item:req.params.item.replace(/\-/g, ' ')}).remove(function(err,data) {
+			// body...
+			if (err) throw err;
+			res.json(data);
 		});
-	res.json(data);
 	});
 }
